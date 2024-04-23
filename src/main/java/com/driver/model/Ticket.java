@@ -91,13 +91,9 @@ public class Ticket {
     public void setTrain(Train train) {
         this.train = train;
     }
-     public void calculateTotalFare() {
-        int fare = 0;
-        int lastIndex = stationRoute.indexOf(toStation);
-        for (int i = stationRoute.indexOf(fromStation); i < lastIndex; i++) {
-            fare += 300;
-        }
-        totalFare = fare;
+    private int calculateTotalFare(Station fromStation, Station toStation) {
+        int numStations = Math.abs(fromStation.ordinal() - toStation.ordinal()) + 1;
+        return numStations * 300;
     }
 
 }
