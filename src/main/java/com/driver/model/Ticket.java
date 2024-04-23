@@ -92,7 +92,7 @@ public class Ticket {
         this.train = train;
     }
     private int calculateTotalFare(Station fromStation, Station toStation) {
-        int numStations = Math.abs(fromStation.ordinal() - toStation.ordinal()) + 1;
+        int numStations = Math.abs(fromStation.ordinal() - toStation.ordinal()) ;
         return numStations * 300;
     }
 
