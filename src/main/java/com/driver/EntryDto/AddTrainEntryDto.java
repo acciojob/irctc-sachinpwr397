@@ -46,19 +46,5 @@ public class AddTrainEntryDto {
         this.noOfSeats = noOfSeats;
     }
 
-     public String calculateRouteString() {
-        StringBuilder routeString = new StringBuilder();
-        for (int i = 0; i < stationRoute.size(); i++) {
-            routeString.append(stationRoute.get(i));
-            if (i < stationRoute.size() - 1) {
-                routeString.append(" -> ");
-            }
-        }
-        return routeString.toString();
-    }
-
-    public void calculateDepartureTime() {
-        int hoursToAdd = stationRoute.size() - 1;
-        this.departureTime = LocalTime.of(0, 0).plusHours(hoursToAdd);
-    }
+    
 }
