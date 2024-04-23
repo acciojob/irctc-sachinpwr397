@@ -7,27 +7,37 @@ import java.util.List;
 
 public class AddTrainEntryDto {
 
-    private List<Station> stationRoute; //The items in the list denote the  order in which the train will move
-
-    private LocalTime departureTime;
-
-    private int noOfSeats;
-
-    public List<Station> getStationRoute() {
-        return stationRoute;
-    }
-
-    public AddTrainEntryDto(List<Station> stationRoute, LocalTime departureTime, int noOfSeats) {
-        this.stationRoute = stationRoute;
-        this.departureTime = departureTime;
-        this.noOfSeats = noOfSeats;
-    }
+    private String route; // String representation of the route
+    private LocalTime departureTime; // Departure time from the first station
+    private int noOfSeats; // Number of seats on the train
 
     public AddTrainEntryDto() {
     }
 
-    public void setStationRoute(List<Station> stationRoute) {
-        this.stationRoute = stationRoute;
+    public AddTrainEntryDto(List<Station> stationRoute, LocalTime departureTime, int noOfSeats) {
+        this.route = convertToRoute(stationRoute);
+        this.departureTime = departureTime;
+        this.noOfSeats = noOfSeats;
+    }
+
+    private String convertToRoute(List<Station> stationRoute) {
+        StringBuilder sb = new StringBuilder();
+        for (Station station : stationRoute) {
+            sb.append(station).append(",");
+        }
+        // Remove the last comma
+        if (sb.length() > 0) {
+            sb.deleteCharAt(sb.length() - 1);
+        }
+        return sb.toString();
+    }
+
+    public String getRoute() {
+        return route;
+    }
+
+    public void setRoute(String route) {
+        this.route = route;
     }
 
     public LocalTime getDepartureTime() {
@@ -45,6 +55,4 @@ public class AddTrainEntryDto {
     public void setNoOfSeats(int noOfSeats) {
         this.noOfSeats = noOfSeats;
     }
-
-    
 }
